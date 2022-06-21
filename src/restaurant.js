@@ -102,6 +102,7 @@ const object = {
     cerveja: 6.9,
   }, 
 };
+const returnObj = () => object;
 
 const createMenu = (objeto) => ({
   fetchMenu() {
@@ -115,14 +116,24 @@ const createMenu = (objeto) => ({
     object.consumption.push(string);
     return object;
   },
+  pay() {
+    let sum = 0;
+    for (let i = 0; i < returnObj().consumption.length; i += 1) {
+      if (returnObj().consumption[i] === Object.keys(object.food) || returnObj().consumption[i] === Object.keys(object.drink)) {
+        sum += 3.9;
+      }
+    }
+    const postSum = sum * 10;
+    const final = postSum / 100;
+    return final;
+  },
 });
 
+createMenu(object).newConsumption();
 const newCreateMenu = (string) => {
   createMenu(object).order(string);
   return object;
 };
-createMenu(object).newConsumption();
-const returnObj = () => object;
 
-console.log(newCreateMenu('coxinha'));
+console.log(createMenu(object).pay());
 module.exports = { createMenu, newCreateMenu, returnObj };

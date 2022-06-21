@@ -119,12 +119,10 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // ```
     const addConsumption = () => {
       newCreateMenu('agua');
-      newCreateMenu('sopa');
-      newCreateMenu('sashimi');
       return returnObj();
     };
 
-    expect(addConsumption()).toHaveProperty('consumption', ['coxinha', 'agua', 'sopa', 'sashimi']);
+    expect(addConsumption()).toHaveProperty('consumption', ['coxinha', 'agua']);
     // Agora faça o TESTE 7 deste arquivo.
     // --------------------------------------------------------------------------------------
 
@@ -135,7 +133,11 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.consumption // Retorno: ['coxinha', 'agua', 'coxinha']
     // ```
-    expect(newCreateMenu('coxinha')).toHaveProperty('consumption', ['coxinha', 'agua', 'sopa', 'sashimi', 'coxinha']);
+    const addConsumption2 = () => {
+      newCreateMenu('coxinha');
+      return returnObj();
+    };
+    expect(addConsumption2()).toHaveProperty('consumption', ['coxinha', 'agua', 'coxinha']);
     // Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
 
@@ -146,7 +148,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
     // ```
-  
+    expect(createMenu(object).pay()).toBe(0);
     // Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
   });
 });
